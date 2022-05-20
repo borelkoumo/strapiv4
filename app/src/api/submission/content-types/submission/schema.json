@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -33,12 +33,7 @@
         }
       },
       "type": "enumeration",
-      "enum": [
-        "low",
-        "medium",
-        "severe",
-        "critical"
-      ]
+      "enum": ["low", "medium", "severe", "critical"]
     },
     "submission_target": {
       "pluginOptions": {

@@ -5,20 +5,158 @@ const { CONSTANTS } = require("./constants");
  * @param {*} strapi Strapi object
  */
 module.exports.enablePermissions = async (strapi) => {
-  const permissions = []
+  const result = []
   /**
    * ENABLE PERMISSION ON COMPANY
    */
   const roles = [
     {
       roleType: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
-      roleActions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+      permissions: [
+        {
+          apiName: "company",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "company-user",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "hacker",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "invitation",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "march1st-user",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "program",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "submission",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "submission-status",
+          actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+      ]
     },
-    { roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE, roleActions: ["find", "findOne"] },
-    { roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE, roleActions: ["find", "findOne"] },
+    {
+      roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE,
+      permissions: [
+        {
+          apiName: "company",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "company-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "hacker",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "invitation",
+          actions: ["find", "findOne", "update"],
+        },
+        {
+          apiName: "march1st-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "program",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "submission",
+          actions: ["create", "find", "findOne", "update"],
+        },
+        {
+          apiName: "submission-status",
+          actions: ["create", "find", "findOne", "update"],
+        },
+      ],
+    },
+    {
+      roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
+      permissions: [
+        {
+          apiName: "company",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "company-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "hacker",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "invitation",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "march1st-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "program",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "submission",
+          actions: ["find", "findOne", "update"],
+        },
+        {
+          apiName: "submission-status",
+          actions: ["create", "find", "findOne", "update"],
+        },
+      ],
+    },
     {
       roleType: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
-      roleActions: ["find", "findOne", "update", "createLocalization"],
+      permissions: [
+        {
+          apiName: "company",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "company-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "hacker",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "invitation",
+          actions: ["create", "find", "findOne"],
+        },
+        {
+          apiName: "march1st-user",
+          actions: ["find", "findOne"],
+        },
+        {
+          apiName: "program",
+          actions: ["create", "find", "findOne", "update", "createLocalization"],
+        },
+        {
+          apiName: "submission",
+          actions: ["find", "findOne", "update"],
+        },
+        {
+          apiName: "submission-status",
+          actions: ["create", "find", "findOne", "update"],
+        },
+      ]
     },
   ]
   const apiNames = [
@@ -32,16 +170,17 @@ module.exports.enablePermissions = async (strapi) => {
     "submission-status",
   ]
   for (const role of roles) {
-    const { roleType, roleActions } = role
-    for (const apiName of apiNames) {
-      for (const action of roleActions) {
+    const { roleType, permissions } = role
+    for (const permission of permissions) {
+      const { apiName, actions } = permission
+      for (const action of actions) {
         const actionId = `api::${apiName}.${apiName}.${action}`;
-        let permission = await _enable(
+        let p = await _enable(
           strapi,
           roleType,
           actionId
         );
-        permissions.push({ roleType, actionId, permission })
+        result.push({ roleType, actionId, permission: p })
       }
     }
   }
@@ -90,7 +229,7 @@ module.exports.enablePermissions = async (strapi) => {
   //   permissions.push({ id: api[0] + '.' + api[1], permission: p4 });
   // }
 
-  return permissions;
+  return result;
 };
 
 /**
