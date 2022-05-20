@@ -8,7 +8,7 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register(/*{ strapi }*/) { },
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -53,6 +53,6 @@ module.exports = {
      * Enable permissions
      */
     const permissions = await enablePermissions(strapi);
-    console.log("Permissions = ", permissions);
+    console.log("Permissions = ", permissions.filter(p => p.permission !== undefined));
   },
 };
