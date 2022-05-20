@@ -5,10 +5,23 @@ const { CONSTANTS } = require("./constants");
  * @param {*} strapi Strapi object
  */
 module.exports.enablePermissions = async (strapi) => {
+  const permissions = []
   /**
    * ENABLE PERMISSION ON COMPANY
    */
-  const apiIds = [
+  const roles = [
+    {
+      roleType: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
+      roleActions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+    },
+    { roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE, roleActions: ["find", "findOne"] },
+    { roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE, roleActions: ["find", "findOne"] },
+    {
+      roleType: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
+      roleActions: ["find", "findOne", "update", "createLocalization"],
+    },
+  ]
+  const apiNames = [
     "company",
     "company-user",
     "hacker",
@@ -18,90 +31,64 @@ module.exports.enablePermissions = async (strapi) => {
     "submission",
     "submission-status",
   ]
-  let permissions = [];
-  for (let apiId of apiIds) {
-    // Enable for M1_ACCOUNT_MANAGER
-    let perm1 = await _enable(
-      strapi,
-      CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
-      apiId,
-      apiId,
-      ["create", "find", "findOne", "update", "delete", "createLocalization"]
-    );
-    // Enable for HACKER
-    let perm2 = await _enable(
-      strapi,
-      CONSTANTS.ROLES.HACKER.ROLE_TYPE,
-      apiId,
-      apiId,
-      ["find", "findOne"]
-    );
-    // Enable for PROGRAM_MANAGER
-    let perm3 = await _enable(
-      strapi,
-      CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
-      apiId,
-      apiId,
-      ["find", "findOne"]
-    );
-    // Enable for PROGRAM_SUPER_ADMIN
-    let perm4 = await _enable(
-      strapi,
-      CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
-      apiId,
-      apiId,
-      ["find", "findOne", "update", "createLocalization"]
-    );
-    // permissions.push({ role: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE, id, permission: perm1 });
-    // permissions.push({ role: CONSTANTS.ROLES.HACKER.ROLE_TYPE, id, permission: perm2 });
-    // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE, id, permission: perm3 });
-    // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE, id, permission: perm4 });
-    permissions.push({ id: apiId, permission: perm1 });
-    permissions.push({ id: apiId, permission: perm2 });
-    permissions.push({ id: apiId, permission: perm3 });
-    permissions.push({ id: apiId, permission: perm4 });
+  for (const role of roles) {
+    const { roleType, roleActions } = role
+    for (const apiName of apiNames) {
+      for (const action of roleActions) {
+        const actionId = `api::${apiName}.${apiName}.${action}`;
+        let permission = await _enable(
+          strapi,
+          roleType,
+          actionId
+        );
+        permissions.push({ roleType, actionId, permission })
+      }
+    }
   }
 
   // Enable permissions on users-permissions.user
-  let p1 = await _enable(
-    strapi,
-    CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
-    "users-permissions",
-    "user",
-    ["find", "findOne", "me"]
-  );
-  // Enable for HACKER
-  let p2 = await _enable(
-    strapi,
-    CONSTANTS.ROLES.HACKER.ROLE_TYPE,
-    "users-permissions",
-    "user",
-    ["find", "findOne", "me"]
-  );
-  // Enable for PROGRAM_MANAGER
-  let p3 = await _enable(
-    strapi,
-    CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
-    "users-permissions",
-    "user",
-    ["find", "findOne", "me"]
-  );
-  // Enable for PROGRAM_SUPER_ADMIN
-  let p4 = await _enable(
-    strapi,
-    CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
-    "users-permissions",
-    "user",
-    ["find", "findOne", "me"]
-  );
-  // permissions.push({ role: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE, id, permission: p1 });
-  // permissions.push({ role: CONSTANTS.ROLES.HACKER.ROLE_TYPE, id, permission: p2 });
-  // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE, id, permission: p3 });
-  // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE, id, permission: p4 });
-  permissions.push({ id: "users-permissions.user", permission: p1 });
-  permissions.push({ id: "users-permissions.user", permission: p2 });
-  permissions.push({ id: "users-permissions.user", permission: p3 });
-  permissions.push({ id: "users-permissions.user", permission: p4 });
+  // const apiIds2 = [
+  //   ["users-permissions", "user"],
+  //   ["custom/userdata", "userdata"],
+  // ]
+
+  // for (const api of apiIds2) {
+  //   let p1 = await _enable(
+  //     strapi,
+  //     CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
+  //     api[0],
+  //     api[1],
+  //     ["find", "findOne", "me"]
+  //   );
+  //   // Enable for HACKER
+  //   let p2 = await _enable(
+  //     strapi,
+  //     CONSTANTS.ROLES.HACKER.ROLE_TYPE,
+  //     api[0],
+  //     api[1],
+  //     ["find", "findOne", "me"]
+  //   );
+  //   // Enable for PROGRAM_MANAGER
+  //   let p3 = await _enable(
+  //     strapi,
+  //     CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
+  //     api[0],
+  //     api[1],
+  //     ["find", "findOne", "me"]
+  //   );
+  //   // Enable for PROGRAM_SUPER_ADMIN
+  //   let p4 = await _enable(
+  //     strapi,
+  //     CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
+  //     api[0],
+  //     api[1],
+  //     ["find", "findOne", "me"]
+  //   );
+  //   permissions.push({ id: api[0] + '.' + api[1], permission: p1 });
+  //   permissions.push({ id: api[0] + '.' + api[1], permission: p2 });
+  //   permissions.push({ id: api[0] + '.' + api[1], permission: p3 });
+  //   permissions.push({ id: api[0] + '.' + api[1], permission: p4 });
+  // }
 
   return permissions;
 };
@@ -114,7 +101,7 @@ module.exports.enablePermissions = async (strapi) => {
  * @param {*} controller The controller where the action lives
  * @param {*} action The action itself
  */
-async function _enable(strapi, roleType, apiName, controller, actions = []) {
+async function _enable(strapi, roleType, actionId) {
   // get the role entity
   try {
     const role = await strapi.db
@@ -126,27 +113,21 @@ async function _enable(strapi, roleType, apiName, controller, actions = []) {
         populate: ["permissions"],
       });
 
-    const promises = await Promise.all(
-      actions.map((action) => {
-        const actionId = `api::${apiName}.${controller}.${action}`;
-        // Get permissions associated with the role
-        const rolePermissions = role.permissions.find(
-          (permission) => permission.action === actionId
-        );
-        if (!rolePermissions) {
-          // permission not yet created
-          return strapi.db
-            .query("plugin::users-permissions.permission")
-            .create({
-              data: {
-                action: actionId,
-                role: role.id,
-              },
-            });
-        }
-      })
+    // Get permissions associated with the role
+    const rolePermissions = role.permissions.find(
+      (permission) => permission.action === actionId
     );
-    return promises;
+    if (!rolePermissions) {
+      // permission not yet created
+      return await strapi.db
+        .query("plugin::users-permissions.permission")
+        .create({
+          data: {
+            action: actionId,
+            role: role.id,
+          },
+        });
+    }
   } catch (error) {
     strapi.log.error(
       `Bootstrap script: Could not update settings. ${error.message}`
