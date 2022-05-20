@@ -165,7 +165,7 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "user",
+          apiName: "users-permissions.user",
           actions: ["find", "findOne", "me"],
         },
       ]
@@ -174,7 +174,7 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "user",
+          apiName: "users-permissions.user",
           actions: ["find", "findOne", "me"],
         },
       ],
@@ -183,7 +183,7 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "user",
+          apiName: "users-permissions.user",
           actions: ["find", "findOne", "me"],
         },
       ],
@@ -192,7 +192,7 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
       permissions: [
         {
-          apiName: "user",
+          apiName: "users-permissions.user",
           actions: ["find", "findOne", "me"],
         },
       ]
@@ -220,7 +220,7 @@ module.exports.enablePermissions = async (strapi) => {
     for (const permission of permissions) {
       const { apiName, actions } = permission
       for (const action of actions) {
-        const actionId = `${apiName}.${action}`;
+        const actionId = `plugin::${apiName}.${action}`;
         let p = await _enable(
           strapi,
           roleType,
