@@ -45,9 +45,14 @@ module.exports.enablePermissions = async (strapi) => {
           apiName: "api::submission-status.submission-status",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
+
         {
           apiName: "plugin::users-permissions.user",
           actions: ["find", "findOne", "me"],
+        },
+        {
+          apiName: "api::custom.userdata",
+          actions: ["getUserdata"],
         },
       ]
     },
@@ -89,6 +94,9 @@ module.exports.enablePermissions = async (strapi) => {
         {
           apiName: "plugin::users-permissions.user",
           actions: ["find", "findOne", "me"],
+        }, {
+          apiName: "api::custom.userdata",
+          actions: ["getUserdata"],
         },
       ],
     },
@@ -130,6 +138,9 @@ module.exports.enablePermissions = async (strapi) => {
         {
           apiName: "plugin::users-permissions.user",
           actions: ["find", "findOne", "me"],
+        }, {
+          apiName: "api::custom.userdata",
+          actions: ["getUserdata"],
         },
       ],
     },
@@ -171,6 +182,9 @@ module.exports.enablePermissions = async (strapi) => {
         {
           apiName: "plugin::users-permissions.user",
           actions: ["find", "findOne", "me"],
+        }, {
+          apiName: "api::custom.userdata",
+          actions: ["getUserdata"],
         },
       ]
     },
