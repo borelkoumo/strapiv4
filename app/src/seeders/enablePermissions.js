@@ -185,50 +185,6 @@ module.exports.enablePermissions = async (strapi) => {
     }
   }
 
-  // Enable permissions on users-permissions.user
-  // const apiIds2 = [
-  //   ["users-permissions", "user"],
-  //   ["custom/userdata", "userdata"],
-  // ]
-
-  // for (const api of apiIds2) {
-  //   let p1 = await _enable(
-  //     strapi,
-  //     CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
-  //     api[0],
-  //     api[1],
-  //     ["find", "findOne", "me"]
-  //   );
-  //   // Enable for HACKER
-  //   let p2 = await _enable(
-  //     strapi,
-  //     CONSTANTS.ROLES.HACKER.ROLE_TYPE,
-  //     api[0],
-  //     api[1],
-  //     ["find", "findOne", "me"]
-  //   );
-  //   // Enable for PROGRAM_MANAGER
-  //   let p3 = await _enable(
-  //     strapi,
-  //     CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
-  //     api[0],
-  //     api[1],
-  //     ["find", "findOne", "me"]
-  //   );
-  //   // Enable for PROGRAM_SUPER_ADMIN
-  //   let p4 = await _enable(
-  //     strapi,
-  //     CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
-  //     api[0],
-  //     api[1],
-  //     ["find", "findOne", "me"]
-  //   );
-  //   permissions.push({ id: api[0] + '.' + api[1], permission: p1 });
-  //   permissions.push({ id: api[0] + '.' + api[1], permission: p2 });
-  //   permissions.push({ id: api[0] + '.' + api[1], permission: p3 });
-  //   permissions.push({ id: api[0] + '.' + api[1], permission: p4 });
-  // }
-
   return result;
 };
 
