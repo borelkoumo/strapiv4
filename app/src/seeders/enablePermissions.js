@@ -190,6 +190,8 @@ module.exports.enablePermissions = async (strapi) => {
         result.push({ roleType, actionId, permission: p })
       }
     }
+
+    return result
   }
 
   /**
