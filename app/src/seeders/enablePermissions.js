@@ -98,10 +98,10 @@ module.exports.enablePermissions = async (strapi) => {
   // permissions.push({ role: CONSTANTS.ROLES.HACKER.ROLE_TYPE, id, permission: p2 });
   // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE, id, permission: p3 });
   // permissions.push({ role: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE, id, permission: p4 });
-  permissions.push({ id, permission: p1 });
-  permissions.push({ id, permission: p2 });
-  permissions.push({ id, permission: p3 });
-  permissions.push({ id, permission: p4 });
+  permissions.push({ id: "users-permissions.user", permission: p1 });
+  permissions.push({ id: "users-permissions.user", permission: p2 });
+  permissions.push({ id: "users-permissions.user", permission: p3 });
+  permissions.push({ id: "users-permissions.user", permission: p4 });
 
   return permissions;
 };
