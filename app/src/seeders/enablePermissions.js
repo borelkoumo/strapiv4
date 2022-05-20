@@ -191,7 +191,7 @@ module.exports.enablePermissions = async (strapi) => {
       }
     }
 
-    return result
+    return result;
   }
 
   /**
