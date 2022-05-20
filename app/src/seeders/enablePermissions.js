@@ -14,36 +14,40 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "company",
+          apiName: "api::company.company",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "company-user",
+          apiName: "api::company-user.company-user",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "hacker",
+          apiName: "api::hacker.hacker",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "invitation",
+          apiName: "api::invitation.invitation",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "march1st-user",
+          apiName: "api::march1st-user.march1st-user",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "program",
+          apiName: "api::program.program",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "submission",
+          apiName: "api::submission.submission",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
         },
         {
-          apiName: "submission-status",
+          apiName: "api::submission-status.submission-status",
           actions: ["create", "find", "findOne", "update", "delete", "createLocalization"],
+        },
+        {
+          apiName: "plugin::users-permissions.user",
+          actions: ["find", "findOne", "me"],
         },
       ]
     },
@@ -51,36 +55,40 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "company",
+          apiName: "api::company.company",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "company-user",
+          apiName: "api::company-user.company-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "hacker",
+          apiName: "api::hacker.hacker",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "invitation",
+          apiName: "api::invitation.invitation",
           actions: ["find", "findOne", "update"],
         },
         {
-          apiName: "march1st-user",
+          apiName: "api::march1st-user.march1st-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "program",
+          apiName: "api::program.program",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "submission",
+          apiName: "api::submission.submission",
           actions: ["create", "find", "findOne", "update"],
         },
         {
-          apiName: "submission-status",
+          apiName: "api::submission-status.submission-status",
           actions: ["create", "find", "findOne", "update"],
+        },
+        {
+          apiName: "plugin::users-permissions.user",
+          actions: ["find", "findOne", "me"],
         },
       ],
     },
@@ -88,36 +96,40 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
       permissions: [
         {
-          apiName: "company",
+          apiName: "api::company.company",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "company-user",
+          apiName: "api::company-user.company-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "hacker",
+          apiName: "api::hacker.hacker",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "invitation",
+          apiName: "api::invitation.invitation",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "march1st-user",
+          apiName: "api::march1st-user.march1st-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "program",
+          apiName: "api::program.program",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "submission",
+          apiName: "api::submission.submission",
           actions: ["find", "findOne", "update"],
         },
         {
-          apiName: "submission-status",
+          apiName: "api::submission-status.submission-status",
           actions: ["create", "find", "findOne", "update"],
+        },
+        {
+          apiName: "plugin::users-permissions.user",
+          actions: ["find", "findOne", "me"],
         },
       ],
     },
@@ -125,74 +137,39 @@ module.exports.enablePermissions = async (strapi) => {
       roleType: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
       permissions: [
         {
-          apiName: "company",
+          apiName: "api::company.company",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "company-user",
+          apiName: "api::company-user.company-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "hacker",
+          apiName: "api::hacker.hacker",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "invitation",
+          apiName: "api::invitation.invitation",
           actions: ["create", "find", "findOne"],
         },
         {
-          apiName: "march1st-user",
+          apiName: "api::march1st-user.march1st-user",
           actions: ["find", "findOne"],
         },
         {
-          apiName: "program",
+          apiName: "api::program.program",
           actions: ["create", "find", "findOne", "update", "createLocalization"],
         },
         {
-          apiName: "submission",
+          apiName: "api::submission.submission",
           actions: ["find", "findOne", "update"],
         },
         {
-          apiName: "submission-status",
+          apiName: "api::submission-status.submission-status",
           actions: ["create", "find", "findOne", "update"],
         },
-      ]
-    },
-  ]
-
-  const defaultPermissions2 = [
-    {
-      roleType: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ROLE_TYPE,
-      permissions: [
         {
-          apiName: "users-permissions.user",
-          actions: ["find", "findOne", "me"],
-        },
-      ]
-    },
-    {
-      roleType: CONSTANTS.ROLES.HACKER.ROLE_TYPE,
-      permissions: [
-        {
-          apiName: "users-permissions.user",
-          actions: ["find", "findOne", "me"],
-        },
-      ],
-    },
-    {
-      roleType: CONSTANTS.ROLES.PROGRAM_MANAGER.ROLE_TYPE,
-      permissions: [
-        {
-          apiName: "users-permissions.user",
-          actions: ["find", "findOne", "me"],
-        },
-      ],
-    },
-    {
-      roleType: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
-      permissions: [
-        {
-          apiName: "users-permissions.user",
+          apiName: "plugin::users-permissions.user",
           actions: ["find", "findOne", "me"],
         },
       ]
@@ -204,7 +181,7 @@ module.exports.enablePermissions = async (strapi) => {
     for (const permission of permissions) {
       const { apiName, actions } = permission
       for (const action of actions) {
-        const actionId = `api::${apiName}.${apiName}.${action}`;
+        const actionId = `${apiName}.${action}`;
         let p = await _enable(
           strapi,
           roleType,
@@ -215,64 +192,46 @@ module.exports.enablePermissions = async (strapi) => {
     }
   }
 
-  for (const role of defaultPermissions2) {
-    const { roleType, permissions } = role
-    for (const permission of permissions) {
-      const { apiName, actions } = permission
-      for (const action of actions) {
-        const actionId = `plugin::${apiName}.${action}`;
-        let p = await _enable(
-          strapi,
-          roleType,
-          actionId
-        );
-        result.push({ roleType, actionId, permission: p })
-      }
-    }
-  }
-
-  return result;
-};
-
-/**
- * Enable action on a controller for a specific role
- * @param {*} strapi The strapi object
- * @param {*} roleType The role type
- * @param {*} apiName The name of the api where the controller lives
- * @param {*} controller The controller where the action lives
- * @param {*} action The action itself
- */
-async function _enable(strapi, roleType, actionId) {
-  // get the role entity
-  try {
-    const role = await strapi.db
-      .query("plugin::users-permissions.role")
-      .findOne({
-        where: {
-          type: roleType,
-        },
-        populate: ["permissions"],
-      });
-
-    // Get permissions associated with the role
-    const rolePermissions = role.permissions.find(
-      (permission) => permission.action === actionId
-    );
-    if (!rolePermissions) {
-      // permission not yet created
-      return await strapi.db
-        .query("plugin::users-permissions.permission")
-        .create({
-          data: {
-            action: actionId,
-            role: role.id,
+  /**
+   * Enable action on a controller for a specific role
+   * @param {*} strapi The strapi object
+   * @param {*} roleType The role type
+   * @param {*} apiName The name of the api where the controller lives
+   * @param {*} controller The controller where the action lives
+   * @param {*} action The action itself
+   */
+  async function _enable(strapi, roleType, actionId) {
+    // get the role entity
+    try {
+      const role = await strapi.db
+        .query("plugin::users-permissions.role")
+        .findOne({
+          where: {
+            type: roleType,
           },
+          populate: ["permissions"],
         });
+
+      // Get permissions associated with the role
+      const rolePermissions = role.permissions.find(
+        (permission) => permission.action === actionId
+      );
+      if (!rolePermissions) {
+        // permission not yet created
+        return await strapi.db
+          .query("plugin::users-permissions.permission")
+          .create({
+            data: {
+              action: actionId,
+              role: role.id,
+            },
+          });
+      }
+    } catch (error) {
+      strapi.log.error(
+        `Bootstrap script: Could not update settings. ${error.message}`
+      );
+      console.log(error);
     }
-  } catch (error) {
-    strapi.log.error(
-      `Bootstrap script: Could not update settings. ${error.message}`
-    );
-    console.log(error);
   }
 }
