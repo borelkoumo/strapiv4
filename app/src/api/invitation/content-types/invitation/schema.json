@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invitations",
+  "info": {
+    "singularName": "invitation",
+    "pluralName": "invitations",
+    "displayName": "Invitation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company-user.company-user"
+    },
+    "hacker": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hacker.hacker"
+    },
+    "program": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program.program"
+    },
+    "accepted": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

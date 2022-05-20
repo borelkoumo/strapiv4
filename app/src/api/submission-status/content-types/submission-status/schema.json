@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submission_statuses",
+  "info": {
+    "singularName": "submission-status",
+    "pluralName": "submission-statuses",
+    "displayName": "SubmissionStatus",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "status": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "triaged",
+        "accepted_unresolved",
+        "accepted_resolved",
+        "client_returned_for_review",
+        "m1_returned_for_review",
+        "rejected"
+      ],
+      "required": true
+    },
+    "status_title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "comment": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "submission": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::submission.submission",
+      "inversedBy": "submission_statuses"
+    }
+  }
+}
