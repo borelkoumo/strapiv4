@@ -53,6 +53,6 @@ module.exports = {
      * Enable permissions
      */
     const permissions = await enablePermissions(strapi);
-    console.log("Permissions = ", permissions.filter(p => p.permission !== undefined));
+    console.log("Permissions = ", permissions.filter(p => p.permission !== undefined || p.actionId.indexOf("user") !== -1));
   },
 };
