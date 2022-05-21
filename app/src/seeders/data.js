@@ -538,7 +538,7 @@ module.exports.submissions = [
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S1.ID,
     submission_title: "Submission #1",
     severity_level: "low", // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "1",
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
@@ -550,12 +550,13 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
     submission_title: "Submission #2",
     severity_level: "medium", // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "3",
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
@@ -567,12 +568,13 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
     submission_title: "Submission #3",
     severity_level: "medium", // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "3",
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
@@ -584,6 +586,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
@@ -594,7 +597,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]), // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -606,6 +609,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
@@ -616,7 +620,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]), // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -628,6 +632,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
@@ -638,7 +643,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]), // enum: ["low", "medium", "severe", "critical"],
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -650,6 +655,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
@@ -660,7 +666,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -672,6 +678,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
@@ -682,7 +689,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -694,6 +701,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
@@ -704,7 +712,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -716,6 +724,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
@@ -726,7 +735,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -738,6 +747,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
@@ -748,7 +758,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -760,6 +770,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
@@ -770,7 +781,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -782,6 +793,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
@@ -792,7 +804,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -804,6 +816,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
@@ -814,7 +827,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -826,6 +839,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S3.ID,
@@ -836,7 +850,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -848,6 +862,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
@@ -858,7 +873,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -870,6 +885,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
@@ -880,7 +896,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -892,6 +908,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    published_at: new Date(),
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
@@ -902,7 +919,7 @@ module.exports.submissions = [
       "severe",
       "critical",
     ]),
-    submission_target: "" + faker.datatype.number({ min: 1, max: 10 }),
+    submission_target: faker.internet.url(),
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
@@ -914,6 +931,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    published_at: new Date(),
   },
 ];
 
@@ -928,92 +946,93 @@ module.exports.submissionStatuses = [
   {
     id: countSubmissionStatus++,
     ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S1.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
   },
 
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S3.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic,
+    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
   },
 ];
