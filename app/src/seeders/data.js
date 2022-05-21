@@ -550,7 +550,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -569,7 +569,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -588,7 +588,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -612,7 +612,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -636,7 +636,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -660,7 +660,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -684,7 +684,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -708,7 +708,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -732,7 +732,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -756,7 +756,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -780,7 +780,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -804,7 +804,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -828,7 +828,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -852,7 +852,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -876,7 +876,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -900,7 +900,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -924,7 +924,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
   {
@@ -948,7 +948,7 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    published_at: new Date(),
+    publishedAt: "2022-05-21T05:55:25.912Z",
     _publicationState: 'published',
   },
 ];
