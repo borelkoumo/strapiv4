@@ -551,6 +551,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
@@ -569,6 +570,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
@@ -587,6 +589,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
@@ -610,6 +613,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
@@ -633,6 +637,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
@@ -656,6 +661,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
@@ -679,6 +685,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
@@ -702,6 +709,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
@@ -725,6 +733,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
@@ -748,6 +757,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
@@ -771,6 +781,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
@@ -794,6 +805,7 @@ module.exports.submissions = [
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
@@ -817,6 +829,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
@@ -840,6 +853,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S3.ID,
@@ -863,6 +877,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
@@ -886,6 +901,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
@@ -909,6 +925,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
@@ -932,6 +949,7 @@ module.exports.submissions = [
     program: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
     published_at: new Date(),
+    _publicationState: 'published',
   },
 ];
 
