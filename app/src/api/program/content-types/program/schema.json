@@ -172,6 +172,12 @@
       "relation": "manyToMany",
       "target": "api::company-user.company-user",
       "inversedBy": "programs"
+    },
+    "invitations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invitation.invitation",
+      "mappedBy": "program"
     }
   }
 }

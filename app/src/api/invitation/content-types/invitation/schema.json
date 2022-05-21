@@ -4,7 +4,8 @@
   "info": {
     "singularName": "invitation",
     "pluralName": "invitations",
-    "displayName": "Invitation"
+    "displayName": "Invitation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -23,8 +24,9 @@
     },
     "program": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::program.program"
+      "relation": "manyToOne",
+      "target": "api::program.program",
+      "inversedBy": "invitations"
     },
     "accepted": {
       "type": "boolean",

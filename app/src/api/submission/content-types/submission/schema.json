@@ -33,7 +33,12 @@
         }
       },
       "type": "enumeration",
-      "enum": ["low", "medium", "severe", "critical"]
+      "enum": [
+        "low",
+        "medium",
+        "severe",
+        "critical"
+      ]
     },
     "submission_target": {
       "pluginOptions": {
