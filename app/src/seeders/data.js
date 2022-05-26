@@ -24,10 +24,10 @@ module.exports.roles = [
   },
   {
     id: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ID,
-    name: "Company Program Super Administrator",
+    name: "Company Super Admin",
     type: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ROLE_TYPE,
     description:
-      "This role is to allow API access to users having a Program Super Admin role",
+      "This role is to allow API access to users having a Super Admin role",
   },
 ];
 
@@ -36,7 +36,7 @@ module.exports.users = [
     id: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
     username: "m1_account_manager",
     email: "m1_account_manager@march1st.com",
-    password: "M1_account_manager@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -46,7 +46,7 @@ module.exports.users = [
     id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
     username: "fb_program_manager1",
     email: "fb_program_manager1@gmail.com",
-    password: "FB_program_manager1@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -56,7 +56,7 @@ module.exports.users = [
     id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
     username: "fb_program_manager2",
     email: "fb_program_manager2@gmail.com",
-    password: "FB_program_manager2@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -66,7 +66,7 @@ module.exports.users = [
     id: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
     username: "fb_program_super_admin",
     email: "fb_program_super_admin@gmail.com",
-    password: "FB_program_super_admin@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -76,7 +76,7 @@ module.exports.users = [
     id: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.ID,
     username: "tw_program_manager1",
     email: "tw_program_manager1@gmail.com",
-    password: "TW_program_manager1@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -86,7 +86,7 @@ module.exports.users = [
     id: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
     username: "tw_program_super_admin",
     email: "tw_program_super_admin@gmail.com",
-    password: "TW_program_super_admin@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -96,7 +96,7 @@ module.exports.users = [
     id: CONSTANTS.HACKERS.HACKER_1.ID,
     username: "hacker1",
     email: "hacker1@gmail.com",
-    password: "Hacker1@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -106,7 +106,7 @@ module.exports.users = [
     id: CONSTANTS.HACKERS.HACKER_2.ID,
     username: "hacker2",
     email: "hacker2@gmail.com",
-    password: "Hacker2@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -116,7 +116,7 @@ module.exports.users = [
     id: CONSTANTS.HACKERS.HACKER_3.ID,
     username: "hacker3",
     email: "hacker3@gmail.com",
-    password: "Hacker3@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -126,7 +126,7 @@ module.exports.users = [
     id: CONSTANTS.HACKERS.HACKER_4.ID,
     username: "hacker4",
     email: "hacker4@gmail.com",
-    password: "Hacker4@2022",
+    password: "March1st@2022",
     provider: "local",
     confirmed: true,
     blocked: false,
@@ -150,8 +150,7 @@ module.exports.companies = [
     company_name: "Facebook France",
     address: "Facebook France – 28 rue de l'amiral Hamelin – 75 116 PARIS",
     company_size: 50000,
-    company_logo: faker.image.business(),
-    programs: null,
+    company_logo: faker.image.business(1024, 768, true),
     company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
   },
   {
@@ -159,8 +158,7 @@ module.exports.companies = [
     company_name: "Twitter",
     address: faker.address.streetAddress(true),
     company_size: faker.datatype.number({ min: 10, max: 100 }),
-    company_logo: faker.image.business(),
-    programs: null,
+    company_logo: faker.image.business(1024, 768, true),
     company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
   },
 ];
@@ -314,7 +312,7 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
@@ -325,7 +323,12 @@ module.exports.programs = [
       CONSTANTS.HACKERS.HACKER_1.ID,
       CONSTANTS.HACKERS.HACKER_2.ID,
       CONSTANTS.HACKERS.HACKER_3.ID,
-    ], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    ],
+    company_users: [
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
@@ -352,14 +355,19 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID],
+    company_users: [
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
@@ -386,14 +394,18 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_1.ID],
+    company_users: [
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
@@ -420,14 +432,18 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_3.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_3.ID],
+    company_users: [
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
@@ -454,14 +470,18 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_2.ID, CONSTANTS.HACKERS.HACKER_3.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_2.ID, CONSTANTS.HACKERS.HACKER_3.ID],
+    company_users: [
+      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1,
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
@@ -488,14 +508,18 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID],
+    company_users: [
+      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1,
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
   {
     id: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
@@ -522,14 +546,17 @@ module.exports.programs = [
     legal_terms: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 40 })
     ),
-    program_picture_url: faker.image.business(1234, 2345),
+    program_picture_url: faker.image.business(1024, 768, true),
     is_closed: false,
     reward_guidelines: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 10 })
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_2.ID], // "relation": "manyToMany", "target": "api::hacker.hacker",
+    hackers: [CONSTANTS.HACKERS.HACKER_2.ID],
+    company_users: [
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN,
+    ]
   },
 ];
 
@@ -542,16 +569,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
-    attachment_1: faker.image.animals(),
-    attachment_2: faker.image.food(),
-    attachment_3: faker.image.fashion(),
+    attachment_1: faker.image.animals(640, 480, true),
+    attachment_2: faker.image.food(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
@@ -561,16 +586,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
@@ -580,16 +603,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 3, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
@@ -604,16 +625,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
@@ -628,16 +647,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
@@ -652,7 +669,7 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
     attachment_2: "",
     attachment_3: "",
     attachment_4: "",
@@ -660,8 +677,6 @@ module.exports.submissions = [
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
@@ -676,16 +691,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
@@ -700,16 +713,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
-    attachment_3: faker.image.fashion(),
-    attachment_4: faker.image.food(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
+    attachment_3: faker.image.fashion(640, 480, true),
+    attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
@@ -724,16 +735,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
@@ -748,16 +757,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
@@ -772,16 +779,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
@@ -796,16 +801,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
@@ -820,16 +823,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
@@ -844,16 +845,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S3.ID,
@@ -868,16 +867,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
     hacker: CONSTANTS.HACKERS.HACKER_3.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
@@ -892,16 +889,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
@@ -916,16 +911,14 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
     hacker: CONSTANTS.HACKERS.HACKER_1.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
@@ -940,16 +933,16 @@ module.exports.submissions = [
     submission_text: faker.lorem.paragraphs(
       faker.datatype.number({ min: 1, max: 5 })
     ),
-    attachment_1: faker.image.food(),
-    attachment_2: faker.image.animals(),
+    attachment_1: faker.image.food(640, 480, true),
+    attachment_2: faker.image.animals(640, 480, true),
     attachment_3: "",
     attachment_4: "",
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
     hacker: CONSTANTS.HACKERS.HACKER_2.ID,
-    publishedAt: "2022-05-21T05:55:25.912Z",
-    _publicationState: 'published',
+    // publishedAt: "2022-05-21T05:55:25.912Z",
+    // _publicationState: 'published',
   },
 ];
 
@@ -969,68 +962,81 @@ module.exports.submissionStatuses = [
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
   },
 
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
   },
   {
@@ -1040,17 +1046,20 @@ module.exports.submissionStatuses = [
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
   },
   {
     id: countSubmissionStatus++,
-    ...basic, comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
+    ...basic,
+    comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
   },
 ];

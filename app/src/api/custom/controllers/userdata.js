@@ -11,13 +11,11 @@ module.exports = {
       where: { id },
       populate: ["role", "company_user", "hacker", "march1st_user"],
     });
-    console.log("User = ", user)
     if (!user) {
       console.log("User not found. ID = ", id)
       return
     }
     const roleType = user.role.type;
-    console.log(`roleType = `, roleType);
 
     // recupérer le role du user dans la DB
     const role = await strapi.db
@@ -49,7 +47,6 @@ module.exports = {
       }
     });
     delete role.permissions
-    console.log(`Permissions for role ${roleType} : `, permissions);
     ctx.body = { user, permissions };
   }
 };
