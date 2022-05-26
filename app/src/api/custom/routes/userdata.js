@@ -4,9 +4,9 @@ module.exports = {
       method: "GET",
       path: "/custom/userdata",
       handler: "userdata.getUserdata",
-      config: {
-        auth: true,
-      },
+      // config: {
+      //   auth: true,
+      // },
     },
   ],
 };
