@@ -1,4 +1,7 @@
 let countUsers = 1;
+let countCompanyUsers = 1;
+let countMarch1stUsers = 1;
+let countHackerUsers = 1;
 let countRoles = 3;
 let countPrograms = 1;
 let countSubmissions = 1;
@@ -7,7 +10,8 @@ const CONSTANTS = {
   MARCH1ST: {
     USERS: {
       M1_ACCOUNT_MANAGER: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        M1_USER_ID: countMarch1stUsers++
       },
     },
   },
@@ -17,13 +21,16 @@ const CONSTANTS = {
     },
     USERS: {
       PROGRAM_MANAGER_1: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        C_USER_ID: countCompanyUsers++
       },
       PROGRAM_MANAGER_2: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        C_USER_ID: countCompanyUsers++
       },
       PROGRAM_SUPER_ADMIN: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        C_USER_ID: countCompanyUsers++
       },
     },
     PROGRAMS: {
@@ -85,10 +92,12 @@ const CONSTANTS = {
     },
     USERS: {
       PROGRAM_MANAGER_1: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        C_USER_ID: countCompanyUsers++
       },
       PROGRAM_SUPER_ADMIN: {
-        ID: countUsers++,
+        USER_ID: countUsers++,
+        C_USER_ID: countCompanyUsers++
       },
     },
     PROGRAMS: {
@@ -146,16 +155,20 @@ const CONSTANTS = {
   },
   HACKERS: {
     HACKER_1: {
-      ID: countUsers++,
+      USER_ID: countUsers++,
+      H_USER_ID: countHackerUsers++
     },
     HACKER_2: {
-      ID: countUsers++,
+      USER_ID: countUsers++,
+      H_USER_ID: countHackerUsers++
     },
     HACKER_3: {
-      ID: countUsers++,
+      USER_ID: countUsers++,
+      H_USER_ID: countHackerUsers++
     },
     HACKER_4: {
-      ID: countUsers++,
+      USER_ID: countUsers++,
+      H_USER_ID: countHackerUsers++
     },
   },
 };

@@ -33,7 +33,7 @@ module.exports.roles = [
 
 module.exports.users = [
   {
-    id: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
+    id: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.USER_ID,
     username: "m1_account_manager",
     email: "m1_account_manager@march1st.com",
     password: "March1st@2022",
@@ -43,7 +43,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.M1_ACCOUNT_MANAGER.ID,
   },
   {
-    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.USER_ID,
     username: "fb_program_manager1",
     email: "fb_program_manager1@gmail.com",
     password: "March1st@2022",
@@ -53,7 +53,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.PROGRAM_MANAGER.ID,
   },
   {
-    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.USER_ID,
     username: "fb_program_manager2",
     email: "fb_program_manager2@gmail.com",
     password: "March1st@2022",
@@ -63,7 +63,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.PROGRAM_MANAGER.ID,
   },
   {
-    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.USER_ID,
     username: "fb_program_super_admin",
     email: "fb_program_super_admin@gmail.com",
     password: "March1st@2022",
@@ -73,7 +73,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ID,
   },
   {
-    id: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.ID,
+    id: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.USER_ID,
     username: "tw_program_manager1",
     email: "tw_program_manager1@gmail.com",
     password: "March1st@2022",
@@ -83,7 +83,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.PROGRAM_MANAGER.ID,
   },
   {
-    id: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
+    id: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.USER_ID,
     username: "tw_program_super_admin",
     email: "tw_program_super_admin@gmail.com",
     password: "March1st@2022",
@@ -93,7 +93,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.PROGRAM_SUPER_ADMIN.ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_1.ID,
+    id: CONSTANTS.HACKERS.HACKER_1.USER_ID,
     username: "hacker1",
     email: "hacker1@gmail.com",
     password: "March1st@2022",
@@ -103,7 +103,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.HACKER.ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_2.ID,
+    id: CONSTANTS.HACKERS.HACKER_2.USER_ID,
     username: "hacker2",
     email: "hacker2@gmail.com",
     password: "March1st@2022",
@@ -113,7 +113,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.HACKER.ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_3.ID,
+    id: CONSTANTS.HACKERS.HACKER_3.USER_ID,
     username: "hacker3",
     email: "hacker3@gmail.com",
     password: "March1st@2022",
@@ -123,7 +123,7 @@ module.exports.users = [
     role: CONSTANTS.ROLES.HACKER.ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_4.ID,
+    id: CONSTANTS.HACKERS.HACKER_4.USER_ID,
     username: "hacker4",
     email: "hacker4@gmail.com",
     password: "March1st@2022",
@@ -136,11 +136,11 @@ module.exports.users = [
 
 module.exports.march1stUsers = [
   {
-    id: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
+    id: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.M1_USER_ID,
     name: "William Divine",
     title: "March 1st Root User",
     phone: "+237.96.69.90.69",
-    user: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
+    user: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.USER_ID,
   },
 ];
 
@@ -149,71 +149,71 @@ module.exports.companies = [
     id: CONSTANTS.FACEBOOK.COMPANY.ID,
     company_name: "Facebook France",
     address: "Facebook France – 28 rue de l'amiral Hamelin – 75 116 PARIS",
-    company_size: 50000,
+    company_size: faker.datatype.number({ min: 1000, max: 100000 }),
     company_logo: faker.image.business(1024, 768, true),
-    company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
+    company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.COMPANY.ID,
     company_name: "Twitter",
     address: faker.address.streetAddress(true),
-    company_size: faker.datatype.number({ min: 10, max: 100 }),
+    company_size: faker.datatype.number({ min: 5000, max: 10000 }),
     company_logo: faker.image.business(1024, 768, true),
-    company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.ID,
+    company_created_by: CONSTANTS.MARCH1ST.USERS.M1_ACCOUNT_MANAGER.USER_ID,
   },
 ];
 
 module.exports.companyUsers = [
   {
-    id: 1,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.C_USER_ID,
     first_name: "FB-PM-1",
     last_name: "LastName",
     title: "Facebook Program Manager 1",
     profile_picture_url: faker.image.avatar(),
-    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
+    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.USER_ID,
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
   },
   {
-    id: 2,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.C_USER_ID,
     first_name: "FB-PM-2",
     last_name: "LastName",
     title: "Facebook Program Manager 2",
     profile_picture_url: faker.image.avatar(),
-    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
+    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.USER_ID,
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
   },
   {
-    id: 3,
+    id: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     first_name: "FB-SUPER-ADMIN",
     last_name: "LastName",
     title: "Facebook Super Admin",
     profile_picture_url: faker.image.avatar(),
-    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+    user: CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.USER_ID,
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
   },
   {
-    id: 3,
+    id: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.C_USER_ID,
     first_name: "TW-PM-1",
     last_name: "LastName",
     title: "Twitter Program Manager 1",
     profile_picture_url: faker.image.avatar(),
-    user: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.ID,
+    user: CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.USER_ID,
     company: CONSTANTS.TWITTER.COMPANY.ID,
   },
   {
-    id: 4,
+    id: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     first_name: "TW-SUPER-ADMIN",
     last_name: "LastName",
     title: "Twitter Super Admin",
     profile_picture_url: faker.image.avatar(),
-    user: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
+    user: CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.USER_ID,
     company: CONSTANTS.TWITTER.COMPANY.ID,
   },
 ];
 
 module.exports.hackers = [
   {
-    id: CONSTANTS.HACKERS.HACKER_1.ID,
+    id: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
     first_name: "Hacker-1",
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
@@ -228,10 +228,10 @@ module.exports.hackers = [
     linkedin_url: "",
     website_url: "",
     submissions: null,
-    user: CONSTANTS.HACKERS.HACKER_1.ID,
+    user: CONSTANTS.HACKERS.HACKER_1.USER_ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_2.ID,
+    id: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
     first_name: "Hacker-2",
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
@@ -246,10 +246,10 @@ module.exports.hackers = [
     linkedin_url: "",
     website_url: "",
     submissions: null,
-    user: CONSTANTS.HACKERS.HACKER_2.ID,
+    user: CONSTANTS.HACKERS.HACKER_2.USER_ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_3.ID,
+    id: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
     first_name: "Hacker-3",
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
@@ -264,10 +264,10 @@ module.exports.hackers = [
     linkedin_url: "",
     website_url: "",
     submissions: null,
-    user: CONSTANTS.HACKERS.HACKER_3.ID,
+    user: CONSTANTS.HACKERS.HACKER_3.USER_ID,
   },
   {
-    id: CONSTANTS.HACKERS.HACKER_4.ID,
+    id: CONSTANTS.HACKERS.HACKER_4.H_USER_ID,
     first_name: "Hacker-4",
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
@@ -282,7 +282,7 @@ module.exports.hackers = [
     linkedin_url: "",
     website_url: "",
     submissions: null,
-    user: CONSTANTS.HACKERS.HACKER_4.ID,
+    user: CONSTANTS.HACKERS.HACKER_4.USER_ID,
   },
 ];
 
@@ -320,14 +320,14 @@ module.exports.programs = [
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
     hackers: [
-      CONSTANTS.HACKERS.HACKER_1.ID,
-      CONSTANTS.HACKERS.HACKER_2.ID,
-      CONSTANTS.HACKERS.HACKER_3.ID,
+      CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
+      CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
+      CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
     ],
     company_users: [
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -362,11 +362,11 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_1.H_USER_ID, CONSTANTS.HACKERS.HACKER_2.H_USER_ID],
     company_users: [
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -401,10 +401,10 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_1.H_USER_ID],
     company_users: [
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_1.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -439,10 +439,10 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_3.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_1.H_USER_ID, CONSTANTS.HACKERS.HACKER_3.H_USER_ID],
     company_users: [
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.ID,
-      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_MANAGER_2.C_USER_ID,
+      CONSTANTS.FACEBOOK.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -477,10 +477,10 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_2.ID, CONSTANTS.HACKERS.HACKER_3.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_2.H_USER_ID, CONSTANTS.HACKERS.HACKER_3.H_USER_ID],
     company_users: [
-      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.ID,
-      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.C_USER_ID,
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -515,10 +515,10 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_1.ID, CONSTANTS.HACKERS.HACKER_2.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_1.H_USER_ID, CONSTANTS.HACKERS.HACKER_2.H_USER_ID],
     company_users: [
-      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.ID,
-      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.TWITTER.USERS.PROGRAM_MANAGER_1.C_USER_ID,
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
   {
@@ -553,9 +553,9 @@ module.exports.programs = [
     ),
     submissions: [], // oneToMany
     company: CONSTANTS.FACEBOOK.COMPANY.ID,
-    hackers: [CONSTANTS.HACKERS.HACKER_2.ID],
+    hackers: [CONSTANTS.HACKERS.HACKER_2.H_USER_ID],
     company_users: [
-      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.ID,
+      CONSTANTS.TWITTER.USERS.PROGRAM_SUPER_ADMIN.C_USER_ID,
     ]
   },
 ];
@@ -574,9 +574,9 @@ module.exports.submissions = [
     attachment_3: faker.image.fashion(640, 480, true),
     attachment_4: "",
     attachment_5: "",
-    submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
+    submission_statuses: [],
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S2.ID,
@@ -591,9 +591,9 @@ module.exports.submissions = [
     attachment_3: faker.image.fashion(640, 480, true),
     attachment_4: faker.image.food(640, 480, true),
     attachment_5: "",
-    submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
+    submission_statuses: [], 
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S3.ID,
@@ -610,7 +610,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S4.ID,
@@ -632,7 +632,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S5.ID,
@@ -654,7 +654,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S6.ID,
@@ -676,7 +676,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S7.ID,
@@ -698,7 +698,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S8.ID,
@@ -720,7 +720,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S9.ID,
@@ -742,7 +742,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P3.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S10.ID,
@@ -764,7 +764,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S11.ID,
@@ -786,7 +786,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
   },
   {
     id: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
@@ -808,7 +808,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.FACEBOOK.PROGRAMS.P4.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S1.ID,
@@ -830,7 +830,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S2.ID,
@@ -852,7 +852,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S3.ID,
@@ -874,7 +874,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P1.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_3.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S4.ID,
@@ -896,7 +896,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S5.ID,
@@ -918,7 +918,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P2.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_1.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
   },
   {
     id: CONSTANTS.TWITTER.SUBMISSIONS.S6.ID,
@@ -940,7 +940,7 @@ module.exports.submissions = [
     attachment_5: "",
     submission_statuses: [], // relation: "oneToMany", target: "api::submission-status.submission-status"
     program: CONSTANTS.TWITTER.PROGRAMS.P3.ID,
-    hacker: CONSTANTS.HACKERS.HACKER_2.ID,
+    hacker: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
     // publishedAt: "2022-05-21T05:55:25.912Z",
     // _publicationState: 'published',
   },
