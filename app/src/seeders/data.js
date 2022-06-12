@@ -218,7 +218,7 @@ module.exports.hackers = [
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
     date_of_birth: "1981-01-02", // Date
-    adress: faker.address.streetName(),
+    adress: faker.address.street(),
     country: faker.address.countryCode(),
     city: faker.address.city(),
     nationality: "",
@@ -236,7 +236,7 @@ module.exports.hackers = [
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
     date_of_birth: "1982-02-01", // Date
-    adress: faker.address.streetName(),
+    adress: faker.address.street(),
     country: faker.address.countryCode(),
     city: faker.address.city(),
     nationality: "",
@@ -254,7 +254,7 @@ module.exports.hackers = [
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
     date_of_birth: "1983-02-12", // Date
-    adress: faker.address.streetName(),
+    adress: faker.address.street(),
     country: faker.address.countryCode(),
     city: faker.address.city(),
     nationality: "",
@@ -272,7 +272,7 @@ module.exports.hackers = [
     last_name: "LastName",
     phone: faker.phone.phoneNumber(),
     date_of_birth: "1984-05-20", // Date
-    adress: faker.address.streetName(),
+    adress: faker.address.street(),
     country: faker.address.countryCode(),
     city: faker.address.city(),
     nationality: "",
@@ -1026,7 +1026,6 @@ module.exports.submissionStatuses = [
     comment: faker.lorem.sentence(faker.datatype.number({ min: 5, max: 10 })),
     submission: CONSTANTS.FACEBOOK.SUBMISSIONS.S12.ID,
   },
-
   {
     id: countSubmissionStatus++,
     ...basic,

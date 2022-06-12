@@ -8,5 +8,13 @@ module.exports = {
       //   auth: true,
       // },
     },
+    {
+      method: "POST",
+      path: "/custom/login-client",
+      handler: "userdata.doLoginClient",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };

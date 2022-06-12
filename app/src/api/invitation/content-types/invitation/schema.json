@@ -31,6 +31,9 @@
     "accepted": {
       "type": "boolean",
       "default": false
+    },
+    "accepted_at": {
+      "type": "datetime"
     }
   }
 }
