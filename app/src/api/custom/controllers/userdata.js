@@ -3,13 +3,15 @@ const { promisify } = require('util')
 const axios = require('axios')
 const jsonwebtoken = require('jsonwebtoken')
 const jwkToPem = require('jwk-to-pem')
+const { sanitize } = require('@strapi/utils');
+
 
 /**
  * A set of functions called "actions" for `custom/userdata`
  */
 let cachedKey = undefined
 
-module.exports = {
+module.exports = () => ({
   async getUserdata(ctx, next) {
     const { id } = ctx.query;
     const user = await strapi.query("plugin::users-permissions.user").findOne({
@@ -55,10 +57,13 @@ module.exports = {
     ctx.body = { user, permissions };
   },
 
+  async doSignUpClient(ctx, next) {
+    ctx.body = { status: 'OK', data: { message: "Hello world" } }
+  },
+
   async doLoginClient(ctx, next) {
-    const { idToken } = ctx.query;
-    console.log('Ctx body', JSON.stringify(ctx.body, null, 2))
-    console.log('Ctx query = ', JSON.stringify(ctx.query, null, 2))
+    const { idToken } = ctx.request.body;
+    const { user: userService, jwt: jwtService } = strapi.plugins['users-permissions'].services;
 
     // Assume that request will fail
     let result = {}
@@ -87,8 +92,9 @@ module.exports = {
      *
      */
     // User Pool parameters
-    const region = Env.get('AWS_REGION')
-    const userPoolId = Env.get('AWS_CLIENT_USER_POOL_ID')
+    // console.log("Proceess.env = ", process.env)
+    const region = process.env.AWS_REGION
+    const userPoolId = process.env.AWS_CLIENT_USER_POOL_ID
 
     // Verify user pool parameters
     if (!region) {
@@ -130,7 +136,7 @@ module.exports = {
               e: current.e,
               n: current.n,
             }
-            const pem = jwkToPem.default(myjwk)
+            const pem = jwkToPem(myjwk)
             agg[current.kid] = { instance: current, pem }
             return agg
           }, {})
@@ -182,18 +188,55 @@ module.exports = {
         errorMessage: '',
         ...claim,
       }
-      console.log('Claim confirmed for %s', claim.name)
+      console.log('Claim confirmed for ', claim.name)
       console.log('RESULT = %o', result)
 
-      ctx.body = { result }
+      // Log in user
+
+      const user = await strapi.query('plugin::users-permissions.user').findOne({
+        where: { email: claim.email }
+      });
+
+      if (!user) {
+        return ctx.badRequest('wrong email');
+      }
+
+      if (user.blocked) {
+        return ctx.badRequest('user blocked');
+      }
+
+      if (!user.confirmed) {
+        return ctx.badRequest('user not confirmed');
+      }
+      const userSchema = strapi.getModel('plugin::users-permissions.user');
+      // Sanitize the template's user information
+      const sanitizedUserInfo = await sanitize.sanitizers.defaultSanitizeOutput(userSchema, user);
+
+      let context;
+      try {
+        context = JSON.parse(claim.context);
+      } catch (e) {
+        context = {}
+      }
+      // ctx.send({
+      //   jwt: jwtService.issue({ id: user.id }),
+      //   user: sanitizedUserInfo,
+      //   context
+      // });
+
+      ctx.body = {
+        result, jwt: jwtService.issue({ id: user.id }),
+        user: sanitizedUserInfo,
+        context
+      }
     } catch (error) {
       console.log('Error happened : %o', error.message)
       result = {
         isValid: false,
-        errorMessage: 'Env var AWS_CLIENT_USER_POOL_ID is missing',
+        errorMessage: error.message,
       }
       ctx.body = { result }
       return
     }
   }
-};
+});

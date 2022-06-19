@@ -14,6 +14,9 @@ services:
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${NODE_ENV}
+      AWS_REGION: ${AWS_REGION}
+      AWS_CLIENT_USER_POOL_ID: ${AWS_CLIENT_USER_POOL_ID}
+      AWS_HACKER_USER_POOL_ID: ${AWS_HACKER_USER_POOL_ID}
     volumes:
       - ./app/config:/srv/app/config
       - ./app/src:/srv/app/src

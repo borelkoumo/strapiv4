@@ -16,5 +16,13 @@ module.exports = {
         auth: false,
       },
     },
+    {
+      method: "POST",
+      path: "/custom/signup-client",
+      handler: "userdata.doSignUpClient",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };
