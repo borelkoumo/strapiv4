@@ -59,6 +59,90 @@ module.exports = () => ({
 
   async doSignUpClient(ctx, next) {
     ctx.body = { status: 'OK', data: { message: "Hello world" } }
+    const {
+      username,
+      email,
+      companyName,
+      fullName,
+      title
+    } = ctx.request.body;
+
+    // Get role ID
+    let clientRole = await strapi.db
+      .query("plugin::users-permissions.role")
+      .findOne({
+        where: { type: "program_super_admin" },
+      });
+
+
+    if (clientRole) {
+      const { user: userService } = strapi.plugins['users-permissions'].services;
+      const nombreUsers = await strapi.db
+        .query("plugin::users-permissions.user")
+        .count({});
+      try {
+        // Create User
+        const userData = {
+          id: nombreUsers + 1,
+          username,
+          email,
+          provider: 'local',
+          password: "TestTest@Test.com2022",
+          role: clientRole.id,
+          blocked: false,
+          confirmed: true
+        }
+        console.log('userData == ', userData)
+        const user = await userService.add(userData)
+        console.log('user == ', user)
+
+        // Create Company
+        const nombreCompanies = await strapi.db
+          .query("api::company.company")
+          .count({});
+        const companyData = {
+          id: nombreCompanies + 1,
+          company_name: companyName,
+          address,
+          company_size: 0,
+          company_logo: ""
+        }
+        const company = await strapi.entityService.create("api::company.company", {
+          data: companyData,
+        });
+
+        // Create CompanyUser
+        const nombreCompanyUsers = await strapi.db
+          .query("api::company-user.company-user")
+          .count({});
+        const companyUserData = {
+          id: nombreCompanyUsers + 1,
+          first_name: fullName,
+          last_name: "",
+          title: title,
+          profile_picture_url: "",
+          user: userData.id,
+          company: company.id
+        }
+        const companyUser = await strapi.entityService.create("api::company-user.company-user", {
+          data: companyUserData,
+        });
+
+        ctx.body = {
+          status: "OK",
+          data: {
+            user,
+            company,
+            companyUser
+          }
+        }
+      } catch (error) {
+        console.log(error)
+        return ctx.badRequest(error.message);
+      }
+    } else {
+      return ctx.badRequest("Client role not found");
+    }
   },
 
   async doLoginClient(ctx, next) {
@@ -67,12 +151,6 @@ module.exports = () => ({
 
     // Assume that request will fail
     let result = {}
-    // export interface ClaimVerifyResult {
-    //   readonly userName?: string
-    //   readonly clientId?: string
-    //   readonly isValid: boolean
-    //   readonly errorMessage: string
-    // }
 
     // Check parameters
     if (!idToken) {
@@ -180,7 +258,6 @@ module.exports = () => ({
         throw new Error(`Claim is expired or invalid`)
       }
       if (claim.iss !== iss) {
-        // console.log(`Claim issuer is invalid`)
         throw new Error(`Claim issuer is invalid`)
       }
       result = {
