@@ -4,6 +4,9 @@ const axios = require('axios')
 const jsonwebtoken = require('jsonwebtoken')
 const jwkToPem = require('jwk-to-pem')
 const { sanitize } = require('@strapi/utils');
+const CONSTANTS = require('../../../seeders/constants')
+const { defaultPermissions } = require('../../../seeders/defaultPermissions')
+const { enablePermission } = require('../../../seeders/enablePermissions')
 
 
 /**
@@ -103,7 +106,6 @@ module.exports = () => ({
   },
 
   async doSignUpClient(ctx, next) {
-    ctx.body = { status: 'OK', data: { message: "Hello world" } }
     const {
       username,
       email,
@@ -140,6 +142,23 @@ module.exports = () => ({
         console.log('userData == ', userData)
         const user = await userService.add(userData)
         console.log('user == ', user)
+
+        // Add default permissions for the user
+        const { roleType, permissions } = defaultPermissions.find(defaultPerm => defaultPerm.roleType === "program_super_admin")
+        const enabledPermssions = []
+        for (const permission of permissions) {
+          const { apiName, actions } = permission
+          for (const action of actions) {
+            const actionId = `${apiName}.${action}`;
+            let p = await enablePermission(
+              strapi,
+              roleType,
+              actionId
+            );
+            enabledPermssions.push({ roleType, actionId, permission: p })
+          }
+        }
+        console.log('Permissions enabled : ', enabledPermssions)
 
         // Create Company
         const nombreCompanies = await strapi.db
@@ -192,7 +211,7 @@ module.exports = () => ({
 
   async doLoginClient(ctx, next) {
     const { idToken } = ctx.request.body;
-    const { user: userService, jwt: jwtService } = strapi.plugins['users-permissions'].services;
+    const { jwt: jwtService } = strapi.plugins['users-permissions'].services;
 
     // Assume that request will fail
     let result = {}
@@ -350,12 +369,6 @@ module.exports = () => ({
         permissions,
         context
       });
-      // ctx.body = {
-      //   jwt: jwtService.issue({ id: user.id }),
-      //   user: sanitizedUserInfo,
-      //   permissions,
-      //   context
-      // }
     } catch (error) {
       console.log('Error happened : %o', error.message)
       result = {

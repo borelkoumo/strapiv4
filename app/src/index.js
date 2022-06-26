@@ -1,6 +1,8 @@
 "use strict";
 const seeders = require("./seeders/seed");
 const { enablePermissions } = require("./seeders/enablePermissions");
+const { defaultPermissions } = require('./seeders/defaultPermissions');
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -52,7 +54,7 @@ module.exports = {
     /**
      * Enable permissions
      */
-    const permissions = await enablePermissions(strapi);
+    const permissions = await enablePermissions(strapi, defaultPermissions);
     console.log("Enabled permissions = ", permissions.filter(p => p.permission !== undefined));
   },
 };
