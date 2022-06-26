@@ -315,7 +315,8 @@ module.exports = () => ({
 
       // Log in user
       const user = await strapi.query('plugin::users-permissions.user').findOne({
-        where: { email: claim.email }
+        where: { email: claim.email },
+        populate: ["role", "company_user", "hacker", "march1st_user"],
       });
 
       if (!user) {
