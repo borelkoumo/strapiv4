@@ -329,6 +329,7 @@ module.exports = () => ({
       }
 
       // Get user's role
+      console.log('USER = ', user)
       const role = { ...user.role }
 
       // Sanitize the template's user information
