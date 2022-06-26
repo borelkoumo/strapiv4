@@ -345,7 +345,7 @@ module.exports = () => ({
 
       // Send response
       ctx.send({
-        jwt: jwtService.issue({ id: user.id }),
+        jwtStrapi: jwtService.issue({ id: user.id }),
         user: sanitizedUserInfo,
         permissions,
         context
