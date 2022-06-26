@@ -103,7 +103,7 @@ module.exports = () => ({
         const companyData = {
           id: nombreCompanies + 1,
           company_name: companyName,
-          address,
+          address: "",
           company_size: 0,
           company_logo: ""
         }
