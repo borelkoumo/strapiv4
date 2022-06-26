@@ -11,6 +11,51 @@ const { sanitize } = require('@strapi/utils');
  */
 let cachedKey = undefined
 
+async function getUserPersmissions(userId) {
+  const user = await strapi.query("plugin::users-permissions.user").findOne({
+    where: { id: userId },
+    populate: ["role", "company_user", "hacker", "march1st_user"],
+  });
+  if (!user) {
+    console.log("User not found. ID = ", userId)
+    return {}
+  }
+  const roleType = user.role.type;
+
+  // recupérer le role du user dans la DB
+  const role = await strapi.db
+    .query("plugin::users-permissions.role")
+    .findOne({
+      where: {
+        type: roleType,
+      },
+      populate: ["permissions"],
+    });
+
+  // L'action à vérifier
+  // Chaque action est au format `api::${apiName}.${controller}.${action}`;
+  const permissions = {
+    ["api::program.program.create"]: false,
+    [`api::program.program.update`]: false,
+    [`api::program.program.find`]: false,
+    [`api::program.program.findOne`]: false,
+    [`api::company.company.find`]: false,
+    [`api::company.company.findOne`]: false,
+  };
+
+  Object.keys(permissions).forEach((actionId) => {
+    const roleHasPermission = role.permissions.find(
+      (permission) => permission.action === actionId
+    );
+    if (roleHasPermission) {
+      permissions[actionId] = true;
+    }
+  });
+  delete role.permissions
+  console.log('Permissions : ', permissions)
+  return permissions
+}
+
 module.exports = () => ({
   async getUserdata(ctx, next) {
     const { id } = ctx.query;
@@ -269,7 +314,6 @@ module.exports = () => ({
       console.log('RESULT = %o', result)
 
       // Log in user
-
       const user = await strapi.query('plugin::users-permissions.user').findOne({
         where: { email: claim.email }
       });
@@ -277,16 +321,15 @@ module.exports = () => ({
       if (!user) {
         return ctx.badRequest('wrong email');
       }
-
       if (user.blocked) {
         return ctx.badRequest('user blocked');
       }
-
       if (!user.confirmed) {
         return ctx.badRequest('user not confirmed');
       }
-      const userSchema = strapi.getModel('plugin::users-permissions.user');
+
       // Sanitize the template's user information
+      const userSchema = strapi.getModel('plugin::users-permissions.user');
       const sanitizedUserInfo = await sanitize.sanitizers.defaultSanitizeOutput(userSchema, user);
 
       let context;
@@ -295,17 +338,23 @@ module.exports = () => ({
       } catch (e) {
         context = {}
       }
-      // ctx.send({
+
+      // Get user permissions
+      const permissions = getUserPersmissions(user.id)
+
+      // Send response
+      ctx.send({
+        jwt: jwtService.issue({ id: user.id }),
+        user: sanitizedUserInfo,
+        permissions,
+        context
+      });
+      // ctx.body = {
       //   jwt: jwtService.issue({ id: user.id }),
       //   user: sanitizedUserInfo,
+      //   permissions,
       //   context
-      // });
-
-      ctx.body = {
-        result, jwt: jwtService.issue({ id: user.id }),
-        user: sanitizedUserInfo,
-        context
-      }
+      // }
     } catch (error) {
       console.log('Error happened : %o', error.message)
       result = {
