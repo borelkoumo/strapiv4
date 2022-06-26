@@ -7,7 +7,7 @@
    * @param {*} action The action itself
    */
 
-module.exports.enablePermission = async (strapi, roleType, actionId) => {
+const enablePermission = async (strapi, roleType, actionId) => {
   // get the role entity
   try {
     const role = await strapi.db
@@ -41,13 +41,14 @@ module.exports.enablePermission = async (strapi, roleType, actionId) => {
     console.log(error);
   }
 }
+module.exports.enablePermission = enablePermission
 
 
 /**
  * Enable actions for different roles in our app
  * @param {*} strapi Strapi object
  */
-module.exports.enablePermissions = async (strapi, defaultPermissions) => {
+const enablePermissions = async (strapi, defaultPermissions) => {
   const result = []
 
   for (const role of defaultPermissions) {
@@ -68,3 +69,5 @@ module.exports.enablePermissions = async (strapi, defaultPermissions) => {
     return result;
   }
 }
+
+module.exports.enablePermissions = enablePermissions
