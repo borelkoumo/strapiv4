@@ -328,6 +328,9 @@ module.exports = () => ({
         return ctx.badRequest('user not confirmed');
       }
 
+      // Get user's role
+      const role = { ...user.role }
+
       // Sanitize the template's user information
       const userSchema = strapi.getModel('plugin::users-permissions.user');
       const sanitizedUserInfo = await sanitize.sanitizers.defaultSanitizeOutput(userSchema, user);
@@ -346,6 +349,7 @@ module.exports = () => ({
       ctx.send({
         jwt: jwtService.issue({ id: user.id }),
         user: sanitizedUserInfo,
+        role,
         permissions,
         context
       });
