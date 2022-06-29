@@ -65,9 +65,7 @@ const enablePermissions = async (strapi, defaultPermissions) => {
         result.push({ roleType, actionId, permission: p })
       }
     }
-
     return result;
   }
 }
-
 module.exports.enablePermissions = enablePermissions

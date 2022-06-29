@@ -4,7 +4,6 @@ const axios = require('axios')
 const jsonwebtoken = require('jsonwebtoken')
 const jwkToPem = require('jwk-to-pem')
 const { sanitize } = require('@strapi/utils');
-const CONSTANTS = require('../../../seeders/constants')
 const { defaultPermissions } = require('../../../seeders/defaultPermissions')
 const { enablePermission } = require('../../../seeders/enablePermissions')
 
