@@ -10,8 +10,8 @@ module.exports = {
     },
     {
       method: "POST",
-      path: "/custom/login-client",
-      handler: "userdata.doLoginClient",
+      path: "/custom/login",
+      handler: "userdata.doLogin",
       config: {
         auth: false,
       },
@@ -20,6 +20,14 @@ module.exports = {
       method: "POST",
       path: "/custom/signup-client",
       handler: "userdata.doSignUpClient",
+      config: {
+        auth: false,
+      },
+    },
+    {
+      method: "POST",
+      path: "/custom/signup-hacker",
+      handler: "userdata.doSignUpHacker",
       config: {
         auth: false,
       },

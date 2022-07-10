@@ -53,7 +53,6 @@ async function getUserPersmissions(userId) {
       permissions[actionId] = true;
     }
   });
-  delete role.permissions
   console.log('Permissions : ', permissions)
   return permissions
 }
@@ -208,7 +207,103 @@ module.exports = () => ({
     }
   },
 
-  async doLoginClient(ctx, next) {
+  async doSignUpHacker(ctx, next) {
+    const {
+      username,
+      email,
+      fullName
+    } = ctx.request.body;
+
+    // Get role ID
+    let hackerRole = await strapi.db
+      .query("plugin::users-permissions.role")
+      .findOne({
+        where: { type: "hacker" },
+      });
+
+
+    if (hackerRole) {
+      const { user: userService } = strapi.plugins['users-permissions'].services;
+      const nombreUsers = await strapi.db
+        .query("plugin::users-permissions.user")
+        .count({});
+      try {
+        // Create User
+        const userData = {
+          id: nombreUsers + 1,
+          username,
+          email,
+          role: hackerRole.id,
+          provider: 'local',
+          password: "TestTest@Test.com2022",
+          blocked: false,
+          confirmed: true
+        }
+        console.log('userData == ', userData)
+        const user = await userService.add(userData)
+        console.log('user == ', user)
+
+        // Add default permissions for the user
+        const { roleType, permissions } = defaultPermissions.find(defaultPerm => defaultPerm.roleType === "hacker")
+        const enabledPermissions = []
+        for (const permission of permissions) {
+          const { apiName, actions } = permission
+          for (const action of actions) {
+            const actionId = `${apiName}.${action}`;
+            let p = await enablePermission(
+              strapi,
+              roleType,
+              actionId
+            );
+            enabledPermissions.push({ roleType, actionId, permission: p })
+          }
+        }
+        console.log('Permissions enabled : ', enabledPermissions)
+
+        // Create Hacker
+        const nombreHackers = await strapi.db
+          .query("api::hacker.hacker")
+          .count({});
+        const hackerData = {
+          id: nombreHackers + 1,
+          first_name: fullName,
+          last_name: "",
+          phone: "",
+          date_of_birth: "",
+          adress: "",
+          adress: "",
+          country: "",
+          city: "",
+          nationality: "",
+          identity_front: "",
+          identity_back: "",
+          profile_picture_url: "",
+          profile_picture_url: "",
+          linkedin_url: "",
+          website_url: "",
+          user: userData.id,
+        }
+        const hackerUser = await strapi.entityService.create("api::hacker.hacker", {
+          data: hackerData,
+        });
+
+        ctx.body = {
+          status: "OK",
+          data: {
+            user,
+            hackerUser
+          }
+        }
+      } catch (error) {
+        console.log(error)
+        return ctx.badRequest(error.message);
+      }
+    } else {
+      return ctx.badRequest("Hacker role not found");
+    }
+  },
+
+  async doLogin(ctx, next) {
     const { idToken } = ctx.request.body;
     const { jwt: jwtService } = strapi.plugins['users-permissions'].services;
 
@@ -359,7 +454,7 @@ module.exports = () => ({
       }
 
       // Get user permissions
-      const permissions = getUserPersmissions(user.id)
+      const permissions = await getUserPersmissions(user.id)
 
       // Send response
       ctx.send({
@@ -377,5 +472,6 @@ module.exports = () => ({
       ctx.body = { result }
       return
     }
-  }
+  },
+
 });
