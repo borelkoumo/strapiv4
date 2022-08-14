@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "company_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::company-user.company-user"
-    },
     "hacker": {
       "type": "relation",
       "relation": "oneToOne",

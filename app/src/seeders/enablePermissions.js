@@ -7,7 +7,7 @@
    * @param {*} action The action itself
    */
 
-const enablePermission = async (strapi, role, actionId) => {
+const _enablePermission = async (strapi, role, actionId) => {
   try {
     // Get permissions associated with the role
     const rolePermissions = role.permissions.find(
@@ -53,7 +53,7 @@ const enablePermissions = async (strapi, defaultPermissions) => {
       const { apiName, actions } = permission
       for (const action of actions) {
         const actionId = `${apiName}.${action}`;
-        let p = await enablePermission(
+        let p = await _enablePermission(
           strapi,
           role,
           actionId

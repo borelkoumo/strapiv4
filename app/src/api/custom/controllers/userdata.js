@@ -5,7 +5,7 @@ const jsonwebtoken = require('jsonwebtoken')
 const jwkToPem = require('jwk-to-pem')
 const { sanitize } = require('@strapi/utils');
 const { defaultPermissions } = require('../../../seeders/defaultPermissions')
-const { enablePermission } = require('../../../seeders/enablePermissions')
+const { enablePermissions } = require('../../../seeders/enablePermissions')
 
 
 /**
@@ -111,6 +111,7 @@ module.exports = () => ({
       fullName,
       title
     } = ctx.request.body;
+    console.log("doSignUpClient/ctx.request.body = ", JSON.stringify(ctx.request.body, null, 2));
 
     // Get role ID
     let clientRole = await strapi.db
@@ -140,23 +141,6 @@ module.exports = () => ({
         console.log('userData == ', userData)
         const user = await userService.add(userData)
         console.log('user == ', user)
-
-        // Add default permissions for the user
-        const { roleType, permissions } = defaultPermissions.find(defaultPerm => defaultPerm.roleType === "program_super_admin")
-        const enabledPermssions = []
-        for (const permission of permissions) {
-          const { apiName, actions } = permission
-          for (const action of actions) {
-            const actionId = `${apiName}.${action}`;
-            let p = await enablePermission(
-              strapi,
-              roleType,
-              actionId
-            );
-            enabledPermssions.push({ roleType, actionId, permission: p })
-          }
-        }
-        console.log('Permissions enabled : ', enabledPermssions)
 
         // Create Company
         const nombreCompanies = await strapi.db
@@ -189,7 +173,7 @@ module.exports = () => ({
         const companyUser = await strapi.entityService.create("api::company-user.company-user", {
           data: companyUserData,
         });
-
+        
         ctx.body = {
           status: "OK",
           data: {
@@ -213,6 +197,7 @@ module.exports = () => ({
       email,
       fullName
     } = ctx.request.body;
+    console.log("doSignUpHacker/ctx.request.body = ", JSON.stringify(ctx.request.body, null, 2));
 
     // Get role ID
     let hackerRole = await strapi.db
@@ -243,23 +228,6 @@ module.exports = () => ({
         const user = await userService.add(userData)
         console.log('user == ', user)
 
-        // Add default permissions for the user
-        const { roleType, permissions } = defaultPermissions.find(defaultPerm => defaultPerm.roleType === "hacker")
-        const enabledPermissions = []
-        for (const permission of permissions) {
-          const { apiName, actions } = permission
-          for (const action of actions) {
-            const actionId = `${apiName}.${action}`;
-            let p = await enablePermission(
-              strapi,
-              roleType,
-              actionId
-            );
-            enabledPermissions.push({ roleType, actionId, permission: p })
-          }
-        }
-        console.log('Permissions enabled : ', enabledPermissions)
-
         // Create Hacker
         const nombreHackers = await strapi.db
           .query("api::hacker.hacker")
@@ -269,7 +237,7 @@ module.exports = () => ({
           first_name: fullName,
           last_name: "",
           phone: "",
-          date_of_birth: "",
+          //date_of_birth: "01/01/2000",
           adress: "",
           adress: "",
           country: "",
@@ -286,7 +254,7 @@ module.exports = () => ({
         const hackerUser = await strapi.entityService.create("api::hacker.hacker", {
           data: hackerData,
         });
-
+        console.log("hackerUser ===", hackerUser);
         ctx.body = {
           status: "OK",
           data: {
@@ -429,7 +397,7 @@ module.exports = () => ({
       // Log in user
       const user = await strapi.query('plugin::users-permissions.user').findOne({
         where: { email: claim.email },
-        populate: ["role", "company_user", "hacker", "march1st_user"],
+        populate: ["role", "company_user","company_user.company", "hacker", "march1st_user"],
       });
 
       if (!user) {

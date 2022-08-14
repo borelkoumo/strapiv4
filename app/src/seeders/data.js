@@ -216,7 +216,7 @@ module.exports.hackers = [
     id: CONSTANTS.HACKERS.HACKER_1.H_USER_ID,
     first_name: "Hacker-1",
     last_name: "LastName",
-    phone: faker.phone.phoneNumber(),
+    phone: faker.phone.number(),
     date_of_birth: "1981-01-02", // Date
     adress: faker.address.street(),
     country: faker.address.countryCode(),
@@ -234,7 +234,7 @@ module.exports.hackers = [
     id: CONSTANTS.HACKERS.HACKER_2.H_USER_ID,
     first_name: "Hacker-2",
     last_name: "LastName",
-    phone: faker.phone.phoneNumber(),
+    phone: faker.phone.number(),
     date_of_birth: "1982-02-01", // Date
     adress: faker.address.street(),
     country: faker.address.countryCode(),
@@ -252,7 +252,7 @@ module.exports.hackers = [
     id: CONSTANTS.HACKERS.HACKER_3.H_USER_ID,
     first_name: "Hacker-3",
     last_name: "LastName",
-    phone: faker.phone.phoneNumber(),
+    phone: faker.phone.number(),
     date_of_birth: "1983-02-12", // Date
     adress: faker.address.street(),
     country: faker.address.countryCode(),
@@ -270,7 +270,7 @@ module.exports.hackers = [
     id: CONSTANTS.HACKERS.HACKER_4.H_USER_ID,
     first_name: "Hacker-4",
     last_name: "LastName",
-    phone: faker.phone.phoneNumber(),
+    phone: faker.phone.number(),
     date_of_birth: "1984-05-20", // Date
     adress: faker.address.street(),
     country: faker.address.countryCode(),

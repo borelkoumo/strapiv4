@@ -1,4 +1,4 @@
-FROM node:14.19
+FROM node:16.15
 ARG NODE_ENV=development
 RUN apt-get update -y
 # Installing libvips-dev for sharp compatability
@@ -6,9 +6,9 @@ RUN apt-get update -y
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /srv
 COPY ./package.json ./
-# COPY ./package-lock.json ./
-RUN npm config set fetch-retry-maxtimeout 60000 -g
-RUN npm i
+COPY ./package-lock.json ./
+# RUN npm config set fetch-retry-maxtimeout 60000 -g
+RUN npm i --legacy-peer-deps
 ENV PATH=/srv/node_modules/.bin:$PATH
 WORKDIR /srv/app
 COPY ./ .
