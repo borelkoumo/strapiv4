@@ -2,6 +2,14 @@ module.exports = {
   routes: [
     {
       method: "GET",
+      path: "/custom/localdate",
+      handler: "userdata.getLocaldate",
+      // config: {
+      //   auth: true,
+      // },
+    },
+    {
+      method: "GET",
       path: "/custom/userdata",
       handler: "userdata.getUserdata",
       // config: {

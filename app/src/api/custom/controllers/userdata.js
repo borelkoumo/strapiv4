@@ -58,6 +58,9 @@ async function getUserPersmissions(userId) {
 }
 
 module.exports = () => ({
+  async getLocaldate(ctx,next){
+    ctx.body = {date:new Date()}
+  },
   async getUserdata(ctx, next) {
     const { id } = ctx.query;
     const user = await strapi.query("plugin::users-permissions.user").findOne({

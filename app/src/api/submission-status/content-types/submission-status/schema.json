@@ -56,6 +56,11 @@
       "relation": "manyToOne",
       "target": "api::submission.submission",
       "inversedBy": "submission_statuses"
+    },
+    "created_by": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
