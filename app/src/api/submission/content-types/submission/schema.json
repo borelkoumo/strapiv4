@@ -37,7 +37,8 @@
         "low",
         "medium",
         "severe",
-        "critical"
+        "critical",
+        "high"
       ]
     },
     "submission_target": {
@@ -56,46 +57,6 @@
       },
       "type": "richtext"
     },
-    "attachment_1": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "attachment_2": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "attachment_3": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "attachment_4": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "attachment_5": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "submission_statuses": {
       "type": "relation",
       "relation": "oneToMany",
@@ -113,6 +74,22 @@
       "relation": "manyToOne",
       "target": "api::hacker.hacker",
       "inversedBy": "submissions"
+    },
+    "attachment": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

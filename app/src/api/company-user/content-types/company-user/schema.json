@@ -40,14 +40,6 @@
       },
       "type": "string"
     },
-    "profile_picture_url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
@@ -65,6 +57,14 @@
       "relation": "manyToMany",
       "target": "api::program.program",
       "inversedBy": "company_users"
+    },
+    "profile_picture_url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

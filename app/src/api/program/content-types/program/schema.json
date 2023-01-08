@@ -117,14 +117,6 @@
       },
       "type": "richtext"
     },
-    "program_picture_url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "is_closed": {
       "pluginOptions": {
         "i18n": {
@@ -171,13 +163,36 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::company-user.company-user",
-      "inversedBy": "programs"
+      "mappedBy": "programs"
     },
     "invitations": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::invitation.invitation",
       "mappedBy": "program"
+    },
+    "program_picture_url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "program_picture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
